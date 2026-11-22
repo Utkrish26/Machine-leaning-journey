@@ -13,9 +13,13 @@ Machine-Learning-Journey/
 ├── README.md
 ├── requirements.txt
 │
-└── LinearRegression/
-    ├── insurance.csv       # Medical insurance cost dataset
-    └── code.ipynb          # Implementation of Linear Regression model
+├── LinearRegression/
+│   ├── insurance.csv           # Medical insurance cost dataset
+│   └── code.ipynb              # Implementation of Linear Regression model
+│
+└── Houseprice Prediction/
+    ├── HousePricePrediction.csv # House pricing dataset
+    └── Code.ipynb              # EDA, preprocessing, and Linear Regression
 ```
 
 ---
@@ -34,6 +38,21 @@ Machine-Learning-Journey/
   - Model fitting with Scikit-Learn's `LinearRegression`.
   - Model evaluation using $R^2$ Score and Adjusted $R^2$.
 
+### 2. House Price Prediction (Advanced Regression & EDA)
+- **Folder:** [`Houseprice Prediction/`](./Houseprice%20Prediction/)
+- **Notebook:** [`Code.ipynb`](./Houseprice%20Prediction/Code.ipynb)
+- **Dataset:** `HousePricePrediction.csv` (2,919 records, features including lot area, building type, overall condition, year built, basement area, etc.)
+- **Objective:** Predict residential house sale prices based on physical, zoning, and structural features.
+- **Key Steps:**
+  - In-depth Exploratory Data Analysis & descriptive statistics.
+  - Missing value diagnosis and handling (`MSZoning`, `Exterior1st`, `BsmtFinSF2`, `TotalBsmtSF`).
+  - Outlier detection using the Interquartile Range (IQR) method on `LotArea` and `SalePrice`.
+  - One-hot encoding of categorical features with `pd.get_dummies`.
+  - Train-Validation split (80% train, 20% validation).
+  - Model fitting with Scikit-Learn's `LinearRegression`.
+  - Model evaluation using $R^2$ Score (~0.62) and Adjusted $R^2$ (~0.56).
+  - Scatter plot visualization of actual vs. predicted house prices with reference regression line.
+
 ---
 
 ## 🛠️ Getting Started
@@ -44,8 +63,8 @@ Make sure you have Python 3.8+ installed.
 ### Installation
 1. Clone this repository:
    ```bash
-   git clone https://github.com/<your-username>/machine-learning-journey.git
-   cd machine-learning-journey
+   git clone https://github.com/Utkrish26/Machine-leaning-journey.git
+   cd Machine-learning-journey
    ```
 
 2. Create and activate a virtual environment (optional but recommended):
@@ -71,6 +90,7 @@ Make sure you have Python 3.8+ installed.
 
 ## 📈 Learning Roadmap
 - [x] Simple & Multiple Linear Regression
+- [x] Advanced Linear Regression & Feature Engineering (House Price Prediction)
 - [ ] Logistic Regression & Classification
 - [ ] Decision Trees & Random Forests
 - [ ] Support Vector Machines (SVM)
