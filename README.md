@@ -14,12 +14,16 @@ Machine-Learning-Journey/
 ├── requirements.txt
 │
 ├── LinearRegression/
-│   ├── insurance.csv           # Medical insurance cost dataset
-│   └── code.ipynb              # Implementation of Linear Regression model
+│   ├── insurance.csv            # Medical insurance cost dataset
+│   └── code.ipynb               # Implementation of Linear Regression model
 │
-└── Houseprice Prediction/
-    ├── HousePricePrediction.csv # House pricing dataset
-    └── Code.ipynb              # EDA, preprocessing, and Linear Regression
+├── Houseprice Prediction/
+│   ├── HousePricePrediction.csv # House pricing dataset
+│   └── Code.ipynb               # EDA, preprocessing, and Linear Regression
+│
+└── LogisticRegression/
+    ├── 1-heart.csv              # Heart disease clinical dataset
+    └── Code.ipynb               # Binary classification using Logistic Regression
 ```
 
 ---
@@ -52,6 +56,23 @@ Machine-Learning-Journey/
   - Model fitting with Scikit-Learn's `LinearRegression`.
   - Model evaluation using $R^2$ Score (~0.62) and Adjusted $R^2$ (~0.56).
   - Scatter plot visualization of actual vs. predicted house prices with reference regression line.
+
+### 3. Heart Disease Classification (Logistic Regression)
+- **Folder:** [`LogisticRegression/`](./LogisticRegression/)
+- **Notebook:** [`Code.ipynb`](./LogisticRegression/Code.ipynb)
+- **Dataset:** `1-heart.csv` (303 records, 14 medical features: `age`, `sex`, `cp`, `trestbps`, `chol`, `fbs`, `restecg`, `thalach`, `exang`, `oldpeak`, `slope`, `ca`, `thal`, `target`)
+- **Objective:** Predict the presence of heart disease (binary classification: 1 = disease, 0 = no disease) based on clinical health metrics.
+- **Key Steps:**
+  - Data inspection and missing value verification.
+  - Feature-target separation (`X` features vs. `y` target) and class distribution inspection.
+  - Train-Test split (80% train, 20% test, `random_state=42`).
+  - Model fitting with Scikit-Learn's `LogisticRegression(max_iter=2000)`.
+  - Comprehensive classification evaluation:
+    - **Accuracy:** ~88.52%
+    - **Precision:** ~87.88%
+    - **Recall:** ~90.62%
+    - **F1-Score:** ~89.23%
+    - **Confusion Matrix:** 25 True Negatives, 29 True Positives, 4 False Positives, 3 False Negatives.
 
 ---
 
@@ -91,7 +112,7 @@ Make sure you have Python 3.8+ installed.
 ## 📈 Learning Roadmap
 - [x] Simple & Multiple Linear Regression
 - [x] Advanced Linear Regression & Feature Engineering (House Price Prediction)
-- [ ] Logistic Regression & Classification
+- [x] Logistic Regression & Binary Classification (Heart Disease Prediction)
 - [ ] Decision Trees & Random Forests
 - [ ] Support Vector Machines (SVM)
 - [ ] K-Means Clustering
