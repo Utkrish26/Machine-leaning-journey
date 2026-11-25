@@ -21,9 +21,13 @@ Machine-Learning-Journey/
 │   ├── HousePricePrediction.csv # House pricing dataset
 │   └── Code.ipynb               # EDA, preprocessing, and Linear Regression
 │
-└── LogisticRegression/
-    ├── 1-heart.csv              # Heart disease clinical dataset
-    └── Code.ipynb               # Binary classification using Logistic Regression
+├── LogisticRegression/
+│   ├── 1-heart.csv              # Heart disease clinical dataset
+│   └── Code.ipynb               # Binary classification using Logistic Regression
+│
+└── EmployeePrediction/
+    ├── employee_turnover.csv    # Employee workplace & turnover dataset
+    └── Code.ipynb               # Logistic Regression with L1 (Lasso) & L2 (Ridge) Regularization
 ```
 
 ---
@@ -74,6 +78,24 @@ Machine-Learning-Journey/
     - **F1-Score:** ~89.23%
     - **Confusion Matrix:** 25 True Negatives, 29 True Positives, 4 False Positives, 3 False Negatives.
 
+### 4. Employee Turnover Prediction (Regularized Logistic Regression)
+- **Folder:** [`EmployeePrediction/`](./EmployeePrediction/)
+- **Notebook:** [`Code.ipynb`](./EmployeePrediction/Code.ipynb)
+- **Dataset:** `employee_turnover.csv` (1,350 records, 16 features including job satisfaction, monthly income, distance from home, work-life balance, and interaction terms)
+- **Objective:** Predict whether an employee will leave the company (`Employee_Turnover`: 1 = leave, 0 = stay).
+- **Key Steps & Regularization Comparison:**
+  - Missing value audit and feature/target separation.
+  - Train-Test split (80% train, 20% test, `random_state=42`).
+  - Trained three variants of Logistic Regression:
+    1. **Baseline**: Unregularized default Logistic Regression.
+    2. **L1 Lasso (`C=0.5`, solver=`liblinear`)**: Encourages coefficient sparsity and feature selection.
+    3. **L2 Ridge (`C=1.0`)**: Penalizes large coefficient weights to reduce overfitting.
+  - Performance Results:
+    - **Baseline Accuracy:** ~85.93% (F1: 0.84 on turnover class)
+    - **L1 Lasso Accuracy:** **~87.04%** (F1: **0.86** on turnover class — top performer)
+    - **L2 Ridge Accuracy:** ~85.93% (F1: 0.84 on turnover class)
+  - Detailed classification reports comparing precision, recall, and F1 across all models.
+
 ---
 
 ## 🛠️ Getting Started
@@ -113,6 +135,7 @@ Make sure you have Python 3.8+ installed.
 - [x] Simple & Multiple Linear Regression
 - [x] Advanced Linear Regression & Feature Engineering (House Price Prediction)
 - [x] Logistic Regression & Binary Classification (Heart Disease Prediction)
+- [x] Regularization Techniques: L1 Lasso & L2 Ridge (Employee Turnover Prediction)
 - [ ] Decision Trees & Random Forests
 - [ ] Support Vector Machines (SVM)
 - [ ] K-Means Clustering
