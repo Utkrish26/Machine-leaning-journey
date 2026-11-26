@@ -23,7 +23,7 @@ Machine-Learning-Journey/
 │
 ├── LogisticRegression/
 │   ├── 1-heart.csv              # Heart disease clinical dataset
-│   └── Code.ipynb               # Binary classification using Logistic Regression
+│   └── Code.ipynb               # Binary classification & feature standardization
 │
 └── EmployeePrediction/
     ├── employee_turnover.csv    # Employee workplace & turnover dataset
@@ -61,22 +61,21 @@ Machine-Learning-Journey/
   - Model evaluation using $R^2$ Score (~0.62) and Adjusted $R^2$ (~0.56).
   - Scatter plot visualization of actual vs. predicted house prices with reference regression line.
 
-### 3. Heart Disease Classification (Logistic Regression)
+### 3. Heart Disease Classification & Feature Standardization (Logistic Regression)
 - **Folder:** [`LogisticRegression/`](./LogisticRegression/)
 - **Notebook:** [`Code.ipynb`](./LogisticRegression/Code.ipynb)
 - **Dataset:** `1-heart.csv` (303 records, 14 medical features: `age`, `sex`, `cp`, `trestbps`, `chol`, `fbs`, `restecg`, `thalach`, `exang`, `oldpeak`, `slope`, `ca`, `thal`, `target`)
 - **Objective:** Predict the presence of heart disease (binary classification: 1 = disease, 0 = no disease) based on clinical health metrics.
-- **Key Steps:**
+- **Key Steps & Feature Standardization:**
   - Data inspection and missing value verification.
   - Feature-target separation (`X` features vs. `y` target) and class distribution inspection.
   - Train-Test split (80% train, 20% test, `random_state=42`).
-  - Model fitting with Scikit-Learn's `LogisticRegression(max_iter=2000)`.
-  - Comprehensive classification evaluation:
-    - **Accuracy:** ~88.52%
-    - **Precision:** ~87.88%
-    - **Recall:** ~90.62%
-    - **F1-Score:** ~89.23%
-    - **Confusion Matrix:** 25 True Negatives, 29 True Positives, 4 False Positives, 3 False Negatives.
+  - **Model 1 (Raw Unscaled Features):** Evaluated baseline model (Accuracy: ~88.52%, Precision: ~87.88%, Recall: ~90.62%, F1: ~89.23%).
+  - **Feature Standardization (`StandardScaler`):**
+    - Scaled features to zero mean and unit variance ($z = \frac{x - \mu}{\sigma}$).
+    - Applied `fit_transform()` on `X_train` and `transform()` on `X_test` to prevent data leakage.
+  - **Model 2 (Standardized Features):** Retrained and benchmarked (Accuracy: ~85.25%, Precision: ~87.10%, Recall: ~84.38%, F1: ~85.71%).
+  - **Key Concept Learned:** Explored why standardization is essential for uniform gradient descent convergence, fair coefficient penalty in regularized models, and distance-based algorithms.
 
 ### 4. Employee Turnover Prediction (Regularized Logistic Regression)
 - **Folder:** [`EmployeePrediction/`](./EmployeePrediction/)
@@ -135,6 +134,7 @@ Make sure you have Python 3.8+ installed.
 - [x] Simple & Multiple Linear Regression
 - [x] Advanced Linear Regression & Feature Engineering (House Price Prediction)
 - [x] Logistic Regression & Binary Classification (Heart Disease Prediction)
+- [x] Feature Preprocessing: Standardization with `StandardScaler` (Zero Mean & Unit Variance)
 - [x] Regularization Techniques: L1 Lasso & L2 Ridge (Employee Turnover Prediction)
 - [ ] Decision Trees & Random Forests
 - [ ] Support Vector Machines (SVM)
