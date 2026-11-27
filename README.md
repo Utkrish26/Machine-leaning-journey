@@ -14,20 +14,22 @@ Machine-Learning-Journey/
 ├── requirements.txt
 │
 ├── LinearRegression/
-│   ├── insurance.csv            # Medical insurance cost dataset
-│   └── code.ipynb               # Implementation of Linear Regression model
+│   ├── insurance.csv                # Medical insurance cost dataset
+│   └── code.ipynb                   # Implementation of Linear Regression model
 │
 ├── Houseprice Prediction/
-│   ├── HousePricePrediction.csv # House pricing dataset
-│   └── Code.ipynb               # EDA, preprocessing, and Linear Regression
+│   ├── HousePricePrediction.csv     # House pricing dataset
+│   └── Code.ipynb                   # EDA, preprocessing, and Linear Regression
 │
 ├── LogisticRegression/
-│   ├── 1-heart.csv              # Heart disease clinical dataset
-│   └── Code.ipynb               # Binary classification & feature standardization
+│   ├── 1-heart.csv                  # Heart disease clinical dataset
+│   ├── Code.ipynb                   # Logistic Regression & feature standardization
+│   ├── GaussianNaiveBayes.ipynb     # Probabilistic classification using Gaussian NB
+│   └── KNN.ipynb                    # K-Nearest Neighbors classification & K-tuning
 │
 └── EmployeePrediction/
-    ├── employee_turnover.csv    # Employee workplace & turnover dataset
-    └── Code.ipynb               # Logistic Regression with L1 (Lasso) & L2 (Ridge) Regularization
+    ├── employee_turnover.csv        # Employee workplace & turnover dataset
+    └── Code.ipynb                   # Logistic Regression with L1 (Lasso) & L2 (Ridge) Regularization
 ```
 
 ---
@@ -61,21 +63,28 @@ Machine-Learning-Journey/
   - Model evaluation using $R^2$ Score (~0.62) and Adjusted $R^2$ (~0.56).
   - Scatter plot visualization of actual vs. predicted house prices with reference regression line.
 
-### 3. Heart Disease Classification & Feature Standardization (Logistic Regression)
+### 3. Heart Disease Classification & Algorithm Comparison
 - **Folder:** [`LogisticRegression/`](./LogisticRegression/)
-- **Notebook:** [`Code.ipynb`](./LogisticRegression/Code.ipynb)
 - **Dataset:** `1-heart.csv` (303 records, 14 medical features: `age`, `sex`, `cp`, `trestbps`, `chol`, `fbs`, `restecg`, `thalach`, `exang`, `oldpeak`, `slope`, `ca`, `thal`, `target`)
-- **Objective:** Predict the presence of heart disease (binary classification: 1 = disease, 0 = no disease) based on clinical health metrics.
-- **Key Steps & Feature Standardization:**
-  - Data inspection and missing value verification.
-  - Feature-target separation (`X` features vs. `y` target) and class distribution inspection.
-  - Train-Test split (80% train, 20% test, `random_state=42`).
-  - **Model 1 (Raw Unscaled Features):** Evaluated baseline model (Accuracy: ~88.52%, Precision: ~87.88%, Recall: ~90.62%, F1: ~89.23%).
-  - **Feature Standardization (`StandardScaler`):**
-    - Scaled features to zero mean and unit variance ($z = \frac{x - \mu}{\sigma}$).
-    - Applied `fit_transform()` on `X_train` and `transform()` on `X_test` to prevent data leakage.
-  - **Model 2 (Standardized Features):** Retrained and benchmarked (Accuracy: ~85.25%, Precision: ~87.10%, Recall: ~84.38%, F1: ~85.71%).
-  - **Key Concept Learned:** Explored why standardization is essential for uniform gradient descent convergence, fair coefficient penalty in regularized models, and distance-based algorithms.
+- **Objective:** Predict the presence of heart disease (binary classification: 1 = disease, 0 = no disease) using and comparing multiple classification algorithms:
+
+#### A. Logistic Regression & Standardization ([`Code.ipynb`](./LogisticRegression/Code.ipynb))
+- Evaluated baseline model on unscaled vs. standardized features (`StandardScaler`).
+- Applied `fit_transform()` on `X_train` and `transform()` on `X_test` to prevent data leakage.
+- **Unscaled Performance:** Accuracy: ~88.52% | Precision: ~87.88% | Recall: ~90.62% | F1: ~89.23%
+- **Standardized Performance:** Accuracy: ~85.25% | Precision: ~87.10% | Recall: ~84.38% | F1: ~85.71%
+
+#### B. Gaussian Naive Bayes ([`GaussianNaiveBayes.ipynb`](./LogisticRegression/GaussianNaiveBayes.ipynb))
+- Probabilistic classification assuming feature independence and normal distributions (`GaussianNB`).
+- **Performance:** Accuracy: **86.89%** | Precision: **90.00%** | Recall: **84.38%**
+
+#### C. K-Nearest Neighbors (KNN) ([`KNN.ipynb`](./LogisticRegression/KNN.ipynb))
+- Essential feature scaling using `StandardScaler` to ensure unbiased distance measurements.
+- Hyperparameter tuning across neighbor counts ($k$):
+  - **$k = 5$:** Accuracy: **90.16%** | Precision: 93.33% | Recall: 87.50%
+  - **$k = 7$:** Accuracy: **91.80%** | Precision: 93.55% | Recall: 90.62% (⭐ **Best Model**)
+  - **$k = 9$:** Accuracy: **90.16%** | Precision: 93.33% | Recall: 87.50%
+  - **$k = 13$:** Accuracy: **88.52%** | Precision: 87.88% | Recall: 90.62%
 
 ### 4. Employee Turnover Prediction (Regularized Logistic Regression)
 - **Folder:** [`EmployeePrediction/`](./EmployeePrediction/)
@@ -136,6 +145,8 @@ Make sure you have Python 3.8+ installed.
 - [x] Logistic Regression & Binary Classification (Heart Disease Prediction)
 - [x] Feature Preprocessing: Standardization with `StandardScaler` (Zero Mean & Unit Variance)
 - [x] Regularization Techniques: L1 Lasso & L2 Ridge (Employee Turnover Prediction)
+- [x] Naive Bayes Classification (GaussianNB)
+- [x] K-Nearest Neighbors (KNN) & Hyperparameter Tuning ($k$)
 - [ ] Decision Trees & Random Forests
 - [ ] Support Vector Machines (SVM)
 - [ ] K-Means Clustering
